@@ -1,4 +1,4 @@
-// Gulp Basics 
+// Gulp Basics
 var gulp        = require('gulp');
 var plumber     = require('gulp-plumber');
 var lazypipe    = require('lazypipe');
