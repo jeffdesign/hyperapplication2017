@@ -1,54 +1,27 @@
-# Gulp Template
+# [Start Bootstrap](http://startbootstrap.com/) - [Creative](http://startbootstrap.com/template-overviews/creative/)
 
-[![Build Status](https://travis-ci.org/cjmosure/gulp-template.svg?branch=master)](https://travis-ci.org/cjmosure/gulp-template) [![devDependency Status](https://david-dm.org/cjmosure/gulp-template/dev-status.svg)](https://david-dm.org/cjmosure/gulp-template#info=devDependencies)
+[Creative](http://startbootstrap.com/template-overviews/creative/) is a one page creative theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
 
-For examples and more information, see the github page at [cjmosure.github.io/gulp-template](http://cjmosure.github.io/gulp-template/). There is also a react.js version of this as a branch: [github.com/cjmosure/gulp-template/tree/react](https://github.com/cjmosure/gulp-template/tree/react).
+## Getting Started
 
-### A Gulp boilerplate to:
+To begin using this template, choose one of the following options to get started:
+* [Download the latest release on Start Bootstrap](http://startbootstrap.com/template-overviews/creative/)
+* Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-creative.git`
+* Fork the repo
 
-1. Use Bower for front-end package management
-2. Compile SASS & Integrate frameworks (Bootstrap 4 included)
-3. Concatenate and minify CSS with sourcemaps
-4. Concatenate and minify Javascript plugins
-5. Create a lightweight webserver for local development
-6. Generally make your development experience more streamlined and productive! :)
+## Bugs and Issues
 
+Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-creative/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/creative/).
 
-## Setup
+## Creator
 
-1. You need to have node.js & npm installed on your local machine ([Download Here](https://nodejs.org))
-2. Clone this repo: `git clone https://github.com/cjmosure/gulp-template.git`
-3. Run `npm install` or `sudo npm install` if it barks errors at you
-4. Run `bower install` to get dependencies (jquery, angular, bootstrap - see the bower.json file) 
-5. Run `gulp` to run the gulp tasks
-6. Webserver: Run `gulp serve` to open a light webserver and watch for CSS or Javascript changes. URL will automatically open, usually as http://localhost:8000
-7. Browsersync (using another webserver: docker, vagrant, mamp, etc): Add your development url to the `./assets/manifest.json` devUrl to use BrowserSync. Run `gulp watch` to watch for CSS or Javascript changes and compile automatically (control+C to stop watching)
+Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
 
+* https://twitter.com/davidmillerskt
+* https://github.com/davidtmiller
 
-## History
+Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
 
-Not popular enough to warrant releases, but maybe in the future. See the [commits](https://github.com/cjmosure/gulp-template/commits/master) for history of changes / additions.
+## Copyright and License
 
-## Credits
-
-Christopher J. Mosure <cj@webmachine.io>
-
-## Roadmap
-
-- [x] BrowserSync
-- [x] asset builder for scripts
-- [x] asset builder for sass + bootstrap
-- [x] wiredep bower packages
-- [x] lazypipes for css and script tasks
-- [x] lazypipes for js tasks
-- [x] variable declaration for styles files and paths
-- [x] add banners to minified files
-- [x] separate main.css (with source maps), main.min.css 
-- [ ] compress images and add to dist
-- [ ] karma tests for scripts
-- [x] gulp server
-- [x] github page
-
-## License
-
-Do whatever you'd like...
+Copyright 2013-2016 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-creative/blob/gh-pages/LICENSE) license.

@@ -1,186 +1,98 @@
-// Gulp Basics 
-var gulp        = require('gulp');
-var plumber     = require('gulp-plumber');
-var lazypipe    = require('lazypipe');
-var concat      = require('gulp-concat');
-var rename      = require('gulp-rename');
-var notify      = require('gulp-notify');
-//var merge        = require('merge-stream');
-var header      = require('gulp-header');
-var gulpFilter  = require('gulp-filter');
+var gulp = require('gulp');
+var less = require('gulp-less');
 var browserSync = require('browser-sync').create();
-var runSequence = require('run-sequence');
-var changed     = require('gulp-changed');
-var expect      = require('gulp-expect-file');
-var webserver   = require('gulp-webserver');
+var header = require('gulp-header');
+var cleanCSS = require('gulp-clean-css');
+var rename = require("gulp-rename");
+var uglify = require('gulp-uglify');
+var pkg = require('./package.json');
 
-// CSS
-var sass         = require('gulp-sass');
-var sourcemaps   = require('gulp-sourcemaps');
-var autoprefixer = require('gulp-autoprefixer');
-var minifyCss    = require('gulp-minify-css');
-var concatCss    = require('gulp-concat-css');
+// Set the banner content
+var banner = ['/*!\n',
+    ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
+    ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
+    ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n',
+    ' */\n',
+    ''
+].join('');
 
-// Javascript
-var uglify       = require('gulp-uglify');
-
-// Variables & Asset Builder
-var manifest = require('asset-builder')('./assets/manifest.json');
-var javascripts = manifest.getDependencyByName('main.js');
-var styles = manifest.getDependencyByName('main.css');
-var package = require('./package.json');
-
-/**
- * Template for banner to add to file headers
- */
-var banner = {
-    full :
-        '/*!\n' +
-        ' * <%= package.name %> v<%= package.version %>: <%= package.description %>\n' +
-        ' * (c) ' + new Date().getFullYear() + ' <%= package.author.name %>\n' +
-        ' * MIT License\n' +
-        ' * <%= package.repository.url %>\n' +
-        ' */\n\n',
-    min :
-        '/*!' +
-        ' <%= package.name %> v<%= package.version %>' +
-        ' | (c) ' + new Date().getFullYear() + ' <%= package.author.name %>' +
-        ' | MIT License' +
-        ' | <%= package.repository.url %>' +
-        ' */\n'
-};
-
-/**
- * CSS processing pipeline
- */
-var cssTasks = lazypipe()
-  .pipe(plumber)
-  .pipe(sourcemaps.init)
-  .pipe(sass,{ style: 'expanded' })
-  .pipe(autoprefixer, {
-    browsers: [
-      'last 2 versions',
-      'ie 8',
-      'ie 9',
-      'android 2.3',
-      'android 4',
-      'opera 12'
-    ]
-  })
-  .pipe(sourcemaps.write)
-  .pipe(header, banner.full, { package : package })
-  .pipe(gulp.dest, 'dist')
-  .pipe(expect,'dist/main.css')
-  .pipe(rename, {suffix: '.min'})
-  .pipe(minifyCss, {
-    advanced: false,
-    rebase: false
-  })
-  .pipe(header, banner.min, { package : package })
-  .pipe(gulp.dest, 'dist')
-  .pipe(expect,'dist/main.min.css');
-
-/**
- * Javascript processing pipeline
- */
-var jsTasks = lazypipe()
-  .pipe(plumber)
-  .pipe(concat, javascripts.name)
-  .pipe(header, banner.full, { package : package })
-  .pipe(gulp.dest, manifest.paths.dist)
-  .pipe(expect,'dist/main.js')
-  .pipe(rename, { suffix: '.min' })
-  .pipe(uglify)
-  .pipe(header, banner.min, { package : package })
-  .pipe(gulp.dest, manifest.paths.dist)
-  .pipe(expect,'dist/main.min.js');
-
-/**
- * Clean - removes the dist folder
- */
-gulp.task('clean', require('del').bind(null, [manifest.paths.dist]));
-
-/**
- * Wiredep - inject bower css dependencies
- */
-gulp.task('wiredep', function() {
-  var wiredep = require('wiredep').stream;
-  return gulp.src('assets/sass/main.scss')
-  //return gulp.src(project.css) can't get variable to work for some weird reason :|
-    .pipe(wiredep())
-    .pipe(changed('assets/sass', {
-      hasChanged: changed.compareSha1Digest
-    }))
-    .pipe(gulp.dest(manifest.paths.source + 'sass'));
+// Compile LESS files from /less into /css
+gulp.task('less', function() {
+    return gulp.src('less/creative.less')
+        .pipe(less())
+        .pipe(header(banner, { pkg: pkg }))
+        .pipe(gulp.dest('css'))
+        .pipe(browserSync.reload({
+            stream: true
+        }))
 });
 
-/**
- * Process styles
- */
-
-gulp.task('styles',['wiredep'], function() {
-    gulp.src('assets/sass/main.scss').pipe(cssTasks());
+// Minify compiled CSS
+gulp.task('minify-css', ['less'], function() {
+    return gulp.src('css/creative.css')
+        .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest('css'))
+        .pipe(browserSync.reload({
+            stream: true
+        }))
 });
 
-
-/**
- * Process javascript
- */
-gulp.task('scripts', function() {
-    gulp.src(javascripts.globs).pipe(jsTasks());
+// Minify JS
+gulp.task('minify-js', function() {
+    return gulp.src('js/creative.js')
+        .pipe(uglify())
+        .pipe(header(banner, { pkg: pkg }))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest('js'))
+        .pipe(browserSync.reload({
+            stream: true
+        }))
 });
 
-/**
- * Watch for changes and compile
- */
-gulp.task('watch', function() {
-  browserSync.init({
-    files: ['dist/*','*.html','*.php'],
-    proxy: manifest.config.devUrl
-  });
-  gulp.watch('assets/sass/**', ['styles']);
-  gulp.watch('assets/scripts/**', ['scripts']);
-});
+// Copy vendor libraries from /node_modules into /vendor
+gulp.task('copy', function() {
+    gulp.src(['node_modules/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'])
+        .pipe(gulp.dest('vendor/bootstrap'))
 
-/**
- * Web Server
- */
-gulp.task('serve', function() {
-  gulp.src('./')
-    .pipe(webserver({
-      livereload: {
-        enable: true
-      },
-      directoryListing: true,
-      fallback: 'index.html',
-      open: true
-    }));
-    gulp.watch('assets/sass/**', ['styles']);
-    gulp.watch('assets/scripts/**', ['scripts']);
-});
+    gulp.src(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'])
+        .pipe(gulp.dest('vendor/jquery'))
 
-/**
- * Build everything
- */
-gulp.task('build', function(callback) {
-  runSequence(
-    'clean',
-    ['styles','scripts'],
-    callback
-  );
-});
+    gulp.src(['node_modules/magnific-popup/dist/*'])
+        .pipe(gulp.dest('vendor/magnific-popup'))
 
-/**
- * "Gulp" task
- */
-gulp.task('default', function() {
-  gulp.start('build');
-});
+    gulp.src(['node_modules/scrollreveal/dist/*.js'])
+        .pipe(gulp.dest('vendor/scrollreveal'))
 
-/**
- * lil better error handling
- */
-function errorHandler (error) {
-  console.log(error.toString());
-  this.emit('end');
-}
+    gulp.src([
+            'node_modules/font-awesome/**',
+            '!node_modules/font-awesome/**/*.map',
+            '!node_modules/font-awesome/.npmignore',
+            '!node_modules/font-awesome/*.txt',
+            '!node_modules/font-awesome/*.md',
+            '!node_modules/font-awesome/*.json'
+        ])
+        .pipe(gulp.dest('vendor/font-awesome'))
+})
+
+// Run everything
+gulp.task('default', ['less', 'minify-css', 'minify-js', 'copy']);
+
+// Configure the browserSync task
+gulp.task('browserSync', function() {
+    browserSync.init({
+        server: {
+            baseDir: ''
+        },
+    })
+})
+
+// Dev task with browserSync
+gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-js'], function() {
+    gulp.watch('less/*.less', ['less']);
+    gulp.watch('css/*.css', ['minify-css']);
+    gulp.watch('js/*.js', ['minify-js']);
+    // Reloads the browser whenever HTML or JS files change
+    gulp.watch('*.html', browserSync.reload);
+    gulp.watch('js/**/*.js', browserSync.reload);
+});
