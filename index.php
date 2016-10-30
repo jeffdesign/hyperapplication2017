@@ -36,6 +36,14 @@
 
 <body id="page-top">
 
+  <div id="interact" class="hidden text-center sr-button">
+    <div class="cta-text">
+    <h2>Thanks for interacting!</h2>
+    <h3>This webpage is prototype built for the hyperisland application 2017 and therefore missing real content.</h3>
+    <a class="close-cta btn btn-default btn-xl">Close this message</a>
+  </div>
+  </div>
+
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -80,8 +88,9 @@
             <div class="header-content-inner">
                 <h1 id="homeHeading">BETTER <i class="fa fa-home" aria-hidden="true"></i> <br> WE WANT CHANGE</h1>
                 <hr>
-                <p>A community built by the people in order to solve housing shortage</p>
-                <a href="#project" class="btn btn-primary btn-xl page-scroll">EXPLAIN MORE</a>
+                <p>A community built by the people to solve housing shortage</p>
+                <a href="#project" class="page-scroll btn btn-sm animated-button victoria-four">Learn more</a>
+          </div>
             </div>
         </div>
     </header>
@@ -92,9 +101,16 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 class="section-heading">THE PROJECT</h2>
                     <hr class="light">
-                    <p>Sweden and among many other countries is facing record high housing issues.</p>
-                    <p>We want to..</p>
-                    <p class="text-faded">Together we can </p>
+                    <p>
+                        Stockholm among many other cities are facing record high housing shortage and it's an issue that's increasing fast.
+                    </p>
+                      <p class="text-faded">
+                        Huge companies such as Spotify has proven that this issue doesn't just effect were individuels chooses to live, but prevents Swedens bussiness ecosystem to grow.
+                    </p>
+                      <p class="text-faded">
+                          We believe that we need a proper space were we can discuss this matters direcly to politicians, journalists and so on.
+                          Each week we together gather opinions from candidates just like you and me in order to find a solution to this huge issue.
+                      <br></p>
                     <a href="#candidates" class="page-scroll btn btn-default btn-xl sr-button">Get involved</a>
                 </div>
             </div>
@@ -126,9 +142,9 @@
 
     <section class="no-padding" id="speakers">
         <div class="container-fluid">
-            <div class="row no-gutter popup-gallery">
+            <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6 sr-icons">
-                    <a href="assets/img/portfolio/fullsize/1.jpg" class="portfolio-box">
+                    <a class="portfolio-box cta-btn">
                         <img src="assets/img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -137,14 +153,14 @@
                                 </div>
                                 <div class="project-name">
                                     "I think its about time that we..."<br>
-                                    <i>Read more</i>
+                                    <i class="cta-btn">Read more</i>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 sr-icons">
-                    <a href="assets/img/portfolio/fullsize/2.jpg" class="portfolio-box">
+                    <a class="portfolio-box cta-btn">
                         <img src="assets/img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -153,14 +169,14 @@
                                 </div>
                                 <div class="project-name">
                                     "When did we come to this point were.."<br>
-                                    <i>Read more</i>
+                                    <i class="cta-btn">Read more</i>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 sr-icons">
-                    <a href="assets/img/portfolio/fullsize/3.jpg" class="portfolio-box">
+                    <a class="portfolio-box cta-btn">
                         <img src="assets/img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -169,14 +185,14 @@
                                 </div>
                                 <div class="project-name">
                                   "I got a few suggestions I believe will.."<br>
-                                  <i>Read more</i>
+                                  <i class="cta-btn">Read more</i>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 sr-icons">
-                    <a href="assets/img/portfolio/fullsize/4.jpg" class="portfolio-box">
+                    <a class="portfolio-box cta-btn">
                         <img src="assets/img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -185,14 +201,14 @@
                                 </div>
                                 <div class="project-name">
                                   "We really the politicians to.."<br>
-                                  <i>Read more</i>
+                                  <i class="cta-btn">Read more</i>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 sr-icons">
-                    <a href="assets/img/portfolio/fullsize/5.jpg" class="portfolio-box">
+                    <a class="portfolio-box cta-btn">
                         <img src="assets/img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -201,14 +217,14 @@
                                 </div>
                                 <div class="project-name">
                                   "First of all I dont believe.."<br>
-                                  <i>Read more</i>
+                                  <i class="cta-btn">Read more</i>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 sr-icons">
-                    <a href="assets/img/portfolio/fullsize/6.jpg" class="portfolio-box">
+                    <a class="portfolio-box cta-btn">
                         <img src="assets/img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -217,7 +233,7 @@
                                 </div>
                                 <div class="project-name">
                                   "We need to unite in order to.."<br>
-                                  <i>Read more</i>
+                                  <i class="cta-btn">Read more</i>
                                 </div>
                             </div>
                         </div>
@@ -230,22 +246,22 @@
     <aside class="bg-dark">
         <div class="container text-center">
             <div class="call-to-action">
-                <h2>Get involved and make your opinion heard</h2>
-                <h3>Send us your opinion today!</h3>
+                <h1>Want to get involved?</h1>
+                <h3>We want to hear what you have to say!</h3>
+                <p>Each week we gather opinions from around the world and we need your opinion.</p>
                 <p>
-                All submissions will be reviewed to ensure that we recieve relevant information to the subject. <br>
+                  <a class="text-faded cta-btn btn"> How does it work?</a>
                 </p>
                 <div class="col-md-2"></div>
                   <div class="col-md-8">
-                    <form id="form" class="topBefore sr-button"><br>
+                    <form id="form" class="topBefore sr-button" onsubmit="return false;"><br>
     		              <input id="name" type="text" placeholder="FULL NAME"><br>
     		              <input id="email" type="text" placeholder="E-MAIL"><br>
     		              <textarea id="message" type="text" placeholder="MESSAGE (maximum 500 characters)"></textarea><br>
-                      <input id="submit" type="submit" value="SUBMIT">
+                      <input id="submit" type="submit" value="SUBMIT" class="cta-btn">
                     </form>
                   </div>
                 <div class="col-md-2"></div>
-            </div>
         </div>
     </aside>
 
@@ -263,7 +279,7 @@
                 </div>
                 <div class="col-lg-4 text-center">
                     <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-                    <p><a href="mailto:your-email@your-domain.com">info@betterliving.com</a></p>
+                    <p><a class="cta-btn btn">info@betterliving.com</a></p>
                 </div>
             </div>
         </div>

@@ -61,4 +61,23 @@
         }
     });
 
+    // Show interact info
+    jQuery(document).ready(function () {
+        jQuery('.cta-btn').click(function () {
+            //console.log("run");
+            jQuery('#interact').removeClass('hidden');
+            return true;
+        });
+    });
+
+    //Hide interact info
+    // Toggle CTA
+    jQuery(document).ready(function () {
+        jQuery('.close-cta').click(function () {
+            //console.log("run");
+            jQuery('#interact').addClass('hidden');
+            return true;
+        });
+    });
+
 })(jQuery); // End of use strict
